@@ -10,6 +10,10 @@ namespace MyGame
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        public static Game1 Instance { get; private set; }
+        public static Viewport Viewport { get { return Instance.GraphicsDevice.Viewport; } }
+        public static Vector2 ScreenSize { get { return new Vector2(Viewport.Width, Viewport.Height); } }
+
         int _width;
         int _height;
         int randNum1;
@@ -28,8 +32,9 @@ namespace MyGame
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-           
-            
+            Instance = this;
+
+
         }
 
         protected override void Initialize()
@@ -57,10 +62,7 @@ namespace MyGame
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            wallSprite = Content.Load<Texture2D>("wall_mid");
-            wallCornerLeftSprite = Content.Load<Texture2D>("wall_corner_left");
-            wallCornerRightSprite = Content.Load<Texture2D>("wall_corner_right");
-            chestSprite = Content.Load<Texture2D>("chest_empty_open_anim_f0");
+            Art.Load(Content);
 
             // TODO: use this.Content to load your game content here
         }

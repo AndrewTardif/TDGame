@@ -8,7 +8,7 @@ namespace MyGame
 {
     static class Art
     {
-        public static Texture2D Player { get; private set; }
+        public static Texture2D Tower { get; private set; }
         public static Texture2D Seeker { get; private set; }
         public static Texture2D Wanderer { get; private set; }
         public static Texture2D Bullet { get; private set; }
@@ -22,7 +22,7 @@ namespace MyGame
 
         public static void Load(ContentManager content)
         {
-            Player = content.Load<Texture2D>("Player");
+            Tower = content.Load<Texture2D>("Tower");
             Seeker = content.Load<Texture2D>("Seeker");
             Wanderer = content.Load<Texture2D>("Wanderer");
             Bullet = content.Load<Texture2D>("Bullet");
