@@ -4,21 +4,21 @@ using System.Text;
 
 namespace MyGame
 {
-    class Tower : Entity
+    class MainTower : Entity
     {
-        private static Tower instance;
-        public static Tower Instance
+        private static MainTower instance;
+        public static MainTower Instance
         {
             get
             {
                 if (instance == null)
-                    instance = new Tower();
+                    instance = new MainTower();
 
                 return instance;
             }
         }
 
-        private Tower()
+        private MainTower()
         {
             image = Art.Tower;
             Position = Game1.ScreenSize / 2; //temporary position

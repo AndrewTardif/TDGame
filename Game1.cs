@@ -46,6 +46,8 @@ namespace MyGame
             _width = _graphics.PreferredBackBufferWidth;
             _height = _graphics.PreferredBackBufferHeight;
 
+            EntityManager.Add(MainTower.Instance);
+
             levelCount = 1;
 
             random = new Random();
@@ -72,6 +74,8 @@ namespace MyGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            EntityManager.Update();
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -79,9 +83,13 @@ namespace MyGame
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Texture);
+
+            EntityManager.Draw(_spriteBatch);
+
+
             _spriteBatch.Draw(chestSprite, new Vector2(randNum1 * 16, 16), Color.White);
             _spriteBatch.Draw(chestSprite, new Vector2(randNum2 * 16, 16), Color.White);
             _spriteBatch.Draw(chestSprite, new Vector2(randNum3 * 16, 16), Color.White);
