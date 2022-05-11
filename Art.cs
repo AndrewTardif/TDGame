@@ -22,11 +22,11 @@ namespace MyGame
 
         public static void Load(ContentManager content)
         {
-            Tower = content.Load<Texture2D>("Tower");
-            Seeker = content.Load<Texture2D>("Seeker");
-            Wanderer = content.Load<Texture2D>("Wanderer");
-            Bullet = content.Load<Texture2D>("Bullet");
-            Pointer = content.Load<Texture2D>("Pointer");
+            Tower = content.Load<Texture2D>("wall_mid");
+            Seeker = content.Load<Texture2D>("wall_mid");
+            Wanderer = content.Load<Texture2D>("wall_mid");
+            Bullet = content.Load<Texture2D>("wall_mid");
+            Pointer = content.Load<Texture2D>("wall_mid");
 
             wallSprite = content.Load<Texture2D>("wall_mid");
             wallCornerLeftSprite = content.Load<Texture2D>("wall_corner_left");

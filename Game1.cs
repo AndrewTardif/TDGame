@@ -22,10 +22,6 @@ namespace MyGame
         Random random;
 
         int levelCount;
-        Texture2D wallSprite;
-        Texture2D wallCornerLeftSprite;
-        Texture2D wallCornerRightSprite;
-        Texture2D chestSprite;
 
         public Game1()
         {
@@ -46,6 +42,8 @@ namespace MyGame
             _width = _graphics.PreferredBackBufferWidth;
             _height = _graphics.PreferredBackBufferHeight;
 
+            Art.Load(Content);
+
             EntityManager.Add(MainTower.Instance);
 
             levelCount = 1;
@@ -62,9 +60,12 @@ namespace MyGame
 
         protected override void LoadContent()
         {
+            
+            
+
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            Art.Load(Content);
+            
 
             // TODO: use this.Content to load your game content here
         }
@@ -73,6 +74,8 @@ namespace MyGame
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            Input.Update();
 
             EntityManager.Update();
 
@@ -90,20 +93,20 @@ namespace MyGame
             EntityManager.Draw(_spriteBatch);
 
 
-            _spriteBatch.Draw(chestSprite, new Vector2(randNum1 * 16, 16), Color.White);
-            _spriteBatch.Draw(chestSprite, new Vector2(randNum2 * 16, 16), Color.White);
-            _spriteBatch.Draw(chestSprite, new Vector2(randNum3 * 16, 16), Color.White);
+            _spriteBatch.Draw(Art.chestSprite, new Vector2(randNum1 * 16, 16), Color.White);
+            _spriteBatch.Draw(Art.chestSprite, new Vector2(randNum2 * 16, 16), Color.White);
+            _spriteBatch.Draw(Art.chestSprite, new Vector2(randNum3 * 16, 16), Color.White);
             for (int i = 16; i < (_width-16); i+=16)
             { 
-                _spriteBatch.Draw(wallSprite, new Vector2(i, 0), Color.White);
-                _spriteBatch.Draw(wallSprite, new Vector2(i, (_height-16)), Color.White);
+                _spriteBatch.Draw(Art.wallSprite, new Vector2(i, 0), Color.White);
+                _spriteBatch.Draw(Art.wallSprite, new Vector2(i, (_height-16)), Color.White);
 
 
             }
             for (int j = 0; j<_height; j+=16)
             {
-                _spriteBatch.Draw(wallCornerLeftSprite, new Vector2(0, j), Color.White);
-                _spriteBatch.Draw(wallCornerRightSprite, new Vector2((_width - 16), j), Color.White);
+                _spriteBatch.Draw(Art.wallCornerLeftSprite, new Vector2(0, j), Color.White);
+                _spriteBatch.Draw(Art.wallCornerRightSprite, new Vector2((_width - 16), j), Color.White);
             }
             
 
