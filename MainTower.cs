@@ -8,6 +8,9 @@ namespace MyGame
     class MainTower : Entity
     {
         const float speed = 8;
+        const int cooldownFrames = 6;
+        int cooldownRemaining = 0;
+        static Random rand = new Random();
 
         private static MainTower instance;
         public static MainTower Instance
