@@ -39,6 +39,10 @@ namespace MyGame
         {
             return lastKeyboardState.IsKeyUp(key) && keyboardState.IsKeyDown(key);
         }
+        public static bool WasMouseClicked()
+        {
+            return mouseState.LeftButton == ButtonState.Pressed;
+        }
         //Checks if a gamepad button was pressed
         public static bool WasButtonPressed(Buttons button)
         {

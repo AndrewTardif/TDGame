@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +9,7 @@ namespace MyGame
     class MainTower : Entity
     {
         const float speed = 8;
-        const int cooldownFrames = 10;
+        const int cooldownFrames = 7;
         int cooldownRemaining = 0;
         static Random rand = new Random();
 
@@ -52,12 +53,13 @@ namespace MyGame
                 float randAngle = aimAngle + randomSpread;
 
                 Vector2 vel = (11f * new Vector2((float)Math.Cos(randAngle), (float)Math.Sin(randAngle)));
+                if (Input.WasMouseClicked()) {
+                    Vector2 offset = Vector2.Transform(new Vector2(25, -8), aimQuat);
+                    EntityManager.Add(new Bullet(Position + offset, vel));
 
-                Vector2 offset = Vector2.Transform(new Vector2(25, -8), aimQuat);
-                EntityManager.Add(new Bullet(Position + offset, vel));
-
-                offset = Vector2.Transform(new Vector2(25, 8), aimQuat);
-                EntityManager.Add(new Bullet(Position + offset, vel));
+                    offset = Vector2.Transform(new Vector2(25, 8), aimQuat);
+                    EntityManager.Add(new Bullet(Position + offset, vel));
+                }
             }
 
             if (cooldownRemaining > 0)
