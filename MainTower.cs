@@ -8,7 +8,7 @@ namespace MyGame
     class MainTower : Entity
     {
         const float speed = 8;
-        const int cooldownFrames = 6;
+        const int cooldownFrames = 10;
         int cooldownRemaining = 0;
         static Random rand = new Random();
 
@@ -39,6 +39,29 @@ namespace MyGame
 
             if (Velocity.LengthSquared() > 0)
                 Orientation = Velocity.ToAngle();
+
+            var aim = Input.GetAimDirection();
+            if (aim.LengthSquared() > 0 && cooldownRemaining <= 0)
+            {
+                cooldownRemaining = cooldownFrames;
+                float aimAngle = aim.ToAngle();
+                Quaternion aimQuat = Quaternion.CreateFromYawPitchRoll(0, 0, aimAngle);
+                float nxtFloat = (float)rand.NextDouble() * (0.04f - -0.04f) + -0.04f;
+
+                float randomSpread = nxtFloat + nxtFloat;
+                float randAngle = aimAngle + randomSpread;
+
+                Vector2 vel = (11f * new Vector2((float)Math.Cos(randAngle), (float)Math.Sin(randAngle)));
+
+                Vector2 offset = Vector2.Transform(new Vector2(25, -8), aimQuat);
+                EntityManager.Add(new Bullet(Position + offset, vel));
+
+                offset = Vector2.Transform(new Vector2(25, 8), aimQuat);
+                EntityManager.Add(new Bullet(Position + offset, vel));
+            }
+
+            if (cooldownRemaining > 0)
+                cooldownRemaining--;
         }
     }
 }
