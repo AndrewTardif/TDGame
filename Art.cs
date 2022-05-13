@@ -25,7 +25,7 @@ namespace MyGame
             Tower = content.Load<Texture2D>("wall_mid");
             Seeker = content.Load<Texture2D>("wall_mid");
             Wanderer = content.Load<Texture2D>("wall_mid");
-            Bullet = content.Load<Texture2D>("wall_mid");
+            Bullet = content.Load<Texture2D>("weapon_arrow");
             Pointer = content.Load<Texture2D>("wall_mid");
 
             wallSprite = content.Load<Texture2D>("wall_mid");
